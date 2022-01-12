@@ -8,10 +8,12 @@ class equation_solve():
         self.coeffecant_results = []
 
     def input_verification(self):
-        print(self.coeffecant_results)
+        print("\n\n")
+        print(self.coeffecant_variables)
         print("\n\n")
         print(self.solutions_array)
         print("\n\n")
         print(self.coeffecant_results)
+        print("\n\n")
     def compute(self):
         self.coeffecant_results = eq.linalg.solve(self.coeffecant_variables,self.solutions_array)
