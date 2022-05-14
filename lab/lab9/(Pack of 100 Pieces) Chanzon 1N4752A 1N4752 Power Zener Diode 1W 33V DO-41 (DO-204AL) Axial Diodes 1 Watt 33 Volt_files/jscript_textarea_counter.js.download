@@ -1,0 +1,63 @@
+/* javascript function to update form field
+ *  field		form field that is being counted
+ *  count		form field that will show characters left
+ *  maxchars 	maximum number of characters
+*/
+function characterCount(field, count, maxchars) {
+  var realchars = field.value.replace(/\t|\r|\n|\r\n/g,'');
+  var excesschars = realchars.length - maxchars;
+  if (excesschars > 0) {
+		field.value = field.value.substring(0, maxchars);
+		alert("Error:\n\n- You are only allowed to enter up to"+maxchars+" characters.");
+	} else {
+		count.value = maxchars - realchars.length;
+	}
+}
+
+function url_hc(url){ 
+   url_arr = url.split("/"); 
+   
+	if (url_arr[2] === '127.0.0.1' || url_arr[2] === 'localhost')	
+	return url_arr[0]+'/'+url_arr[1]+'/'+url_arr[2]+'/'+url_arr[3]+'/';
+	else return url_arr[0]+'/'+url_arr[1]+'/'+url_arr[2]+'/';
+	 	 
+}
+
+function add_imges(pid,url){	 
+url_n= url_hc(url);	
+$.ajax({
+ type:'GET',
+url:url_n+"/ataj_pimges-735.php",
+ data:{cpid:pid},
+ success: function(data){
+	  data_arr = data.split("#n#"); 
+	$(".productDetail-imageContainer").html(data_arr[0]);	 
+	 $("#p_description").html(data_arr[1]);	
+	 $("#products_description_short").html(data_arr[2]);	
+	 $("#reviews_mod").html(data_arr[3]);  	 
+	 
+ }
+ }); 
+ return false;  
+ 
+}
+
+function add_paname(pid,url){	  
+url_n= url_hc(url);	 
+ $.ajax({
+ type:'GET',
+url:url_n+"/ataj_name-735.php",
+ data:{cpid:pid},
+ success: function(data){
+	  data_arr = data.split("#n#"); 	
+	 $(".productDetail-tileName").html(data_arr[0]);	 
+	 $(".product-info-price-wrapper .product_price").html(data_arr[1]);  
+ }
+ }); 
+ return false; 
+ 
+	 
+}
+
+
+
